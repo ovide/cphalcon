@@ -67,7 +67,7 @@
         },
         "orm.not_null_validations": {
             "type": "bool",
-            "default": true
+            "default": false
         },
         "orm.exception_on_failed_save": {
             "type": "bool",
