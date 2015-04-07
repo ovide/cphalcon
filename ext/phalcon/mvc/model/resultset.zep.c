@@ -619,9 +619,10 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset, update) {
 	_0 = zephir_get_iterator(this_ptr TSRMLS_CC);
 	_0->funcs->rewind(_0 TSRMLS_CC);
 	for (;_0->funcs->valid(_0 TSRMLS_CC) == SUCCESS && !EG(exception); _0->funcs->move_forward(_0 TSRMLS_CC)) {
-		{ zval **tmp; 
-		_0->funcs->get_current_data(_0, &tmp TSRMLS_CC);
-		record = *tmp;
+		{
+			zval **ZEPHIR_TMP_ITERATOR_PTR;
+			_0->funcs->get_current_data(_0, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+			ZEPHIR_CPY_WRT(record, (*ZEPHIR_TMP_ITERATOR_PTR));
 		}
 		if (transaction == 0) {
 			if (!((zephir_method_exists_ex(record, SS("getwriteconnection") TSRMLS_CC) == SUCCESS))) {
@@ -637,7 +638,7 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset, update) {
 		if (Z_TYPE_P(conditionCallback) == IS_OBJECT) {
 			ZEPHIR_INIT_NVAR(_1);
 			ZEPHIR_INIT_NVAR(_2);
-			array_init_size(_2, 2);
+			zephir_create_array(_2, 1, 0 TSRMLS_CC);
 			zephir_array_fast_append(_2, record);
 			ZEPHIR_CALL_USER_FUNC_ARRAY(_1, conditionCallback, _2);
 			zephir_check_call_status();
@@ -694,9 +695,10 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset, delete) {
 	_0 = zephir_get_iterator(this_ptr TSRMLS_CC);
 	_0->funcs->rewind(_0 TSRMLS_CC);
 	for (;_0->funcs->valid(_0 TSRMLS_CC) == SUCCESS && !EG(exception); _0->funcs->move_forward(_0 TSRMLS_CC)) {
-		{ zval **tmp; 
-		_0->funcs->get_current_data(_0, &tmp TSRMLS_CC);
-		record = *tmp;
+		{
+			zval **ZEPHIR_TMP_ITERATOR_PTR;
+			_0->funcs->get_current_data(_0, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+			ZEPHIR_CPY_WRT(record, (*ZEPHIR_TMP_ITERATOR_PTR));
 		}
 		if (transaction == 0) {
 			if (!((zephir_method_exists_ex(record, SS("getwriteconnection") TSRMLS_CC) == SUCCESS))) {
@@ -712,7 +714,7 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset, delete) {
 		if (Z_TYPE_P(conditionCallback) == IS_OBJECT) {
 			ZEPHIR_INIT_NVAR(_1);
 			ZEPHIR_INIT_NVAR(_2);
-			array_init_size(_2, 2);
+			zephir_create_array(_2, 1, 0 TSRMLS_CC);
 			zephir_array_fast_append(_2, record);
 			ZEPHIR_CALL_USER_FUNC_ARRAY(_1, conditionCallback, _2);
 			zephir_check_call_status();
@@ -773,9 +775,10 @@ PHP_METHOD(Phalcon_Mvc_Model_Resultset, filter) {
 	_0 = zephir_get_iterator(this_ptr TSRMLS_CC);
 	_0->funcs->rewind(_0 TSRMLS_CC);
 	for (;_0->funcs->valid(_0 TSRMLS_CC) == SUCCESS && !EG(exception); _0->funcs->move_forward(_0 TSRMLS_CC)) {
-		{ zval **tmp; 
-		_0->funcs->get_current_data(_0, &tmp TSRMLS_CC);
-		record = *tmp;
+		{
+			zval **ZEPHIR_TMP_ITERATOR_PTR;
+			_0->funcs->get_current_data(_0, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+			ZEPHIR_CPY_WRT(record, (*ZEPHIR_TMP_ITERATOR_PTR));
 		}
 		zephir_array_update_long(&parameters, 0, &record, PH_COPY | PH_SEPARATE, "phalcon/mvc/model/resultset.zep", 587);
 		ZEPHIR_INIT_NVAR(processedRecord);

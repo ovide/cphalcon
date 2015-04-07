@@ -4,7 +4,7 @@
 	+------------------------------------------------------------------------+
 	| Phalcon Framework                                                      |
 	+------------------------------------------------------------------------+
-	| Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
+	| Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
 	+------------------------------------------------------------------------+
 	| This source file is subject to the New BSD License that is bundled     |
 	| with this package in the file docs/LICENSE.txt.                        |
@@ -36,10 +36,7 @@ class SessionTest extends PHPUnit_Framework_TestCase
 
 	protected function tearDown()
 	{
-
-		if (session_status() != PHP_SESSION_DISABLED) {
-			session_write_close();
-		}
+		@session_write_close();
 
 		foreach ($this->stack as $key => $val) {
 			@ini_set($key, $val);

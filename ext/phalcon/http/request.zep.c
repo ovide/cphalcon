@@ -1474,7 +1474,7 @@ PHP_METHOD(Phalcon_Http_Request, getUploadedFiles) {
 					}
 					if (_13) {
 						ZEPHIR_INIT_NVAR(dataFile);
-						array_init_size(dataFile, 7);
+						zephir_create_array(dataFile, 5, 0 TSRMLS_CC);
 						ZEPHIR_OBS_NVAR(_15);
 						zephir_array_fetch_string(&_15, file, SL("name"), PH_NOISY, "phalcon/http/request.zep", 838 TSRMLS_CC);
 						zephir_array_update_string(&dataFile, SL("name"), &_15, PH_COPY | PH_SEPARATE);
@@ -1567,7 +1567,7 @@ PHP_METHOD(Phalcon_Http_Request, smoothFiles) {
 		ZEPHIR_CONCAT_VSV(p, prefix, ".", idx);
 		if (Z_TYPE_P(name) == IS_STRING) {
 			ZEPHIR_INIT_NVAR(_3);
-			array_init_size(_3, 11);
+			zephir_create_array(_3, 6, 0 TSRMLS_CC);
 			zephir_array_update_string(&_3, SL("name"), &name, PH_COPY | PH_SEPARATE);
 			ZEPHIR_OBS_NVAR(_4);
 			zephir_array_fetch(&_4, types, idx, PH_NOISY, "phalcon/http/request.zep", 882 TSRMLS_CC);
@@ -1624,7 +1624,7 @@ PHP_METHOD(Phalcon_Http_Request, getHeaders) {
 	ZEPHIR_INIT_VAR(headers);
 	array_init(headers);
 	ZEPHIR_INIT_VAR(contentHeaders);
-	array_init_size(contentHeaders, 3);
+	zephir_create_array(contentHeaders, 2, 0 TSRMLS_CC);
 	zephir_array_update_string(&contentHeaders, SL("CONTENT_TYPE"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&contentHeaders, SL("CONTENT_LENGTH"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
 	zephir_get_global(&_SERVER, SS("_SERVER") TSRMLS_CC);
@@ -1646,7 +1646,7 @@ PHP_METHOD(Phalcon_Http_Request, getHeaders) {
 			ZVAL_STRING(&_7, "_", 0);
 			ZEPHIR_SINIT_NVAR(_8);
 			ZVAL_STRING(&_8, " ", 0);
-			zephir_fast_str_replace(_4, &_7, &_8, _6 TSRMLS_CC);
+			zephir_fast_str_replace(&_4, &_7, &_8, _6 TSRMLS_CC);
 			zephir_fast_strtolower(_3, _4);
 			ZEPHIR_CALL_FUNCTION(&name, "ucwords", &_9, _3);
 			zephir_check_call_status();
@@ -1655,7 +1655,7 @@ PHP_METHOD(Phalcon_Http_Request, getHeaders) {
 			ZVAL_STRING(&_11, " ", 0);
 			ZEPHIR_SINIT_NVAR(_12);
 			ZVAL_STRING(&_12, "-", 0);
-			zephir_fast_str_replace(_10, &_11, &_12, name TSRMLS_CC);
+			zephir_fast_str_replace(&_10, &_11, &_12, name TSRMLS_CC);
 			ZEPHIR_CPY_WRT(name, _10);
 			zephir_array_update_zval(&headers, name, &value, PH_COPY | PH_SEPARATE);
 		} else if (zephir_array_isset(contentHeaders, name)) {
@@ -1665,7 +1665,7 @@ PHP_METHOD(Phalcon_Http_Request, getHeaders) {
 			ZVAL_STRING(&_5, "_", 0);
 			ZEPHIR_SINIT_NVAR(_7);
 			ZVAL_STRING(&_7, " ", 0);
-			zephir_fast_str_replace(_4, &_5, &_7, name TSRMLS_CC);
+			zephir_fast_str_replace(&_4, &_5, &_7, name TSRMLS_CC);
 			zephir_fast_strtolower(_3, _4);
 			ZEPHIR_CALL_FUNCTION(&name, "ucwords", &_9, _3);
 			zephir_check_call_status();
@@ -1674,7 +1674,7 @@ PHP_METHOD(Phalcon_Http_Request, getHeaders) {
 			ZVAL_STRING(&_8, " ", 0);
 			ZEPHIR_SINIT_NVAR(_11);
 			ZVAL_STRING(&_11, "-", 0);
-			zephir_fast_str_replace(_6, &_8, &_11, name TSRMLS_CC);
+			zephir_fast_str_replace(&_6, &_8, &_11, name TSRMLS_CC);
 			ZEPHIR_CPY_WRT(name, _6);
 			zephir_array_update_zval(&headers, name, &value, PH_COPY | PH_SEPARATE);
 		}

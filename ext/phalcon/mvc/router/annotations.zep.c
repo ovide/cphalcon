@@ -124,7 +124,7 @@ PHP_METHOD(Phalcon_Mvc_Router_Annotations, addResource) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 3);
+	zephir_create_array(_0, 2, 0 TSRMLS_CC);
 	zephir_array_fast_append(_0, prefix);
 	zephir_array_fast_append(_0, handler);
 	zephir_update_property_array_append(this_ptr, SL("_handlers"), _0 TSRMLS_CC);
@@ -193,7 +193,7 @@ PHP_METHOD(Phalcon_Mvc_Router_Annotations, addModuleResource) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 5);
+	zephir_create_array(_0, 3, 0 TSRMLS_CC);
 	zephir_array_fast_append(_0, prefix);
 	zephir_array_fast_append(_0, handler);
 	zephir_array_fast_append(_0, module);
@@ -508,7 +508,7 @@ PHP_METHOD(Phalcon_Mvc_Router_Annotations, processActionAnnotation) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_actionSuffix"), PH_NOISY_CC);
 		ZEPHIR_SINIT_VAR(_2);
 		ZVAL_STRING(&_2, "", 0);
-		zephir_fast_str_replace(_0, _1, &_2, action TSRMLS_CC);
+		zephir_fast_str_replace(&_0, _1, &_2, action TSRMLS_CC);
 		zephir_fast_strtolower(actionName, _0);
 		ZEPHIR_OBS_VAR(routePrefix);
 		zephir_read_property_this(&routePrefix, this_ptr, SL("_routePrefix"), PH_NOISY_CC);

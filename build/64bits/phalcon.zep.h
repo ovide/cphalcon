@@ -1326,6 +1326,7 @@ static PHP_METHOD(Phalcon_Cache_Backend_Apc, decrement);
 static PHP_METHOD(Phalcon_Cache_Backend_Apc, delete);
 static PHP_METHOD(Phalcon_Cache_Backend_Apc, queryKeys);
 static PHP_METHOD(Phalcon_Cache_Backend_Apc, exists);
+static PHP_METHOD(Phalcon_Cache_Backend_Apc, flush);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_cache_backend_apc_get, 0, 0, 1)
 	ZEND_ARG_INFO(0, keyName)
@@ -1370,6 +1371,7 @@ ZEPHIR_INIT_FUNCS(phalcon_cache_backend_apc_method_entry) {
 	PHP_ME(Phalcon_Cache_Backend_Apc, delete, arginfo_phalcon_cache_backend_apc_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Cache_Backend_Apc, queryKeys, arginfo_phalcon_cache_backend_apc_querykeys, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Cache_Backend_Apc, exists, arginfo_phalcon_cache_backend_apc_exists, ZEND_ACC_PUBLIC)
+	PHP_ME(Phalcon_Cache_Backend_Apc, flush, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
 
@@ -1708,7 +1710,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(phalcon_cache_backend_mongo_method_entry) {
 	PHP_ME(Phalcon_Cache_Backend_Mongo, __construct, arginfo_phalcon_cache_backend_mongo___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(Phalcon_Cache_Backend_Mongo, _getCollection, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Phalcon_Cache_Backend_Mongo, _getCollection, NULL, ZEND_ACC_PROTECTED|ZEND_ACC_FINAL)
 	PHP_ME(Phalcon_Cache_Backend_Mongo, get, arginfo_phalcon_cache_backend_mongo_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Cache_Backend_Mongo, save, arginfo_phalcon_cache_backend_mongo_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Cache_Backend_Mongo, delete, arginfo_phalcon_cache_backend_mongo_delete, ZEND_ACC_PUBLIC)
@@ -1805,7 +1807,7 @@ static PHP_METHOD(Phalcon_Cache_Backend_Xcache, decrement);
 static PHP_METHOD(Phalcon_Cache_Backend_Xcache, flush);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_cache_backend_xcache___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, frontend)
+	ZEND_ARG_OBJ_INFO(0, frontend, Phalcon\\Cache\\FrontendInterface, 0)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
 
@@ -2592,7 +2594,7 @@ ZEPHIR_INIT_FUNCS(phalcon_config_method_entry) {
 	PHP_ME(Phalcon_Config, toArray, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Config, count, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Config, __set_state, arginfo_phalcon_config___set_state, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(Phalcon_Config, _merge, arginfo_phalcon_config__merge, ZEND_ACC_PRIVATE)
+	PHP_ME(Phalcon_Config, _merge, arginfo_phalcon_config__merge, ZEND_ACC_PROTECTED|ZEND_ACC_FINAL)
   PHP_FE_END
 };
 
@@ -7358,6 +7360,7 @@ static PHP_METHOD(Phalcon_Http_Response, __construct);
 static PHP_METHOD(Phalcon_Http_Response, setDI);
 static PHP_METHOD(Phalcon_Http_Response, getDI);
 static PHP_METHOD(Phalcon_Http_Response, setStatusCode);
+static PHP_METHOD(Phalcon_Http_Response, getStatusCode);
 static PHP_METHOD(Phalcon_Http_Response, setHeaders);
 static PHP_METHOD(Phalcon_Http_Response, getHeaders);
 static PHP_METHOD(Phalcon_Http_Response, setCookies);
@@ -7455,6 +7458,7 @@ ZEPHIR_INIT_FUNCS(phalcon_http_response_method_entry) {
 	PHP_ME(Phalcon_Http_Response, setDI, arginfo_phalcon_http_response_setdi, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Http_Response, getDI, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Http_Response, setStatusCode, arginfo_phalcon_http_response_setstatuscode, ZEND_ACC_PUBLIC)
+	PHP_ME(Phalcon_Http_Response, getStatusCode, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Http_Response, setHeaders, arginfo_phalcon_http_response_setheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Http_Response, getHeaders, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Phalcon_Http_Response, setCookies, arginfo_phalcon_http_response_setcookies, ZEND_ACC_PUBLIC)
@@ -7773,15 +7777,15 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_liquidrescale, 0, 0, 2)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, delta_x)
+	ZEND_ARG_INFO(0, deltaX)
 	ZEND_ARG_INFO(0, rigidity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_crop, 0, 0, 2)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_rotate, 0, 0, 1)
@@ -7799,20 +7803,20 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_reflection, 0, 0, 1)
 	ZEND_ARG_INFO(0, height)
 	ZEND_ARG_INFO(0, opacity)
-	ZEND_ARG_INFO(0, fade_in)
+	ZEND_ARG_INFO(0, fadeIn)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_watermark, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, watermark, Phalcon\\Image\\Adapter, 0)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_text, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 	ZEND_ARG_INFO(0, color)
 	ZEND_ARG_INFO(0, size)
@@ -7908,8 +7912,8 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_gd__crop, 0, 0, 4)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_gd__rotate, 0, 0, 1)
@@ -7927,20 +7931,20 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_gd__reflection, 0, 0, 3)
 	ZEND_ARG_INFO(0, height)
 	ZEND_ARG_INFO(0, opacity)
-	ZEND_ARG_INFO(0, fade_in)
+	ZEND_ARG_INFO(0, fadeIn)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_gd__watermark, 0, 0, 4)
 	ZEND_ARG_OBJ_INFO(0, watermark, Phalcon\\Image\\Adapter, 0)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_gd__text, 0, 0, 9)
 	ZEND_ARG_INFO(0, text)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 	ZEND_ARG_INFO(0, r)
 	ZEND_ARG_INFO(0, g)
@@ -8044,15 +8048,15 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__liquidrescale, 0, 0, 4)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, delta_x)
+	ZEND_ARG_INFO(0, deltaX)
 	ZEND_ARG_INFO(0, rigidity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__crop, 0, 0, 4)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__rotate, 0, 0, 1)
@@ -8070,20 +8074,20 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__reflection, 0, 0, 3)
 	ZEND_ARG_INFO(0, height)
 	ZEND_ARG_INFO(0, opacity)
-	ZEND_ARG_INFO(0, fade_in)
+	ZEND_ARG_INFO(0, fadeIn)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__watermark, 0, 0, 4)
 	ZEND_ARG_OBJ_INFO(0, image, Phalcon\\Image\\Adapter, 0)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapter_imagick__text, 0, 0, 9)
 	ZEND_ARG_INFO(0, text)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 	ZEND_ARG_INFO(0, r)
 	ZEND_ARG_INFO(0, g)
@@ -8163,8 +8167,8 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapterinterface_crop, 0, 0, 2)
 	ZEND_ARG_INFO(0, width)
 	ZEND_ARG_INFO(0, height)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapterinterface_rotate, 0, 0, 1)
@@ -8182,20 +8186,20 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapterinterface_reflection, 0, 0, 1)
 	ZEND_ARG_INFO(0, height)
 	ZEND_ARG_INFO(0, opacity)
-	ZEND_ARG_INFO(0, fade_in)
+	ZEND_ARG_INFO(0, fadeIn)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapterinterface_watermark, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, watermark, Phalcon\\Image\\Adapter, 0)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_image_adapterinterface_text, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
-	ZEND_ARG_INFO(0, offset_x)
-	ZEND_ARG_INFO(0, offset_y)
+	ZEND_ARG_INFO(0, offsetX)
+	ZEND_ARG_INFO(0, offsetY)
 	ZEND_ARG_INFO(0, opacity)
 	ZEND_ARG_INFO(0, color)
 	ZEND_ARG_INFO(0, size)
@@ -12462,7 +12466,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_mvc_model_query_builder_having, 0, 0, 1)
 	ZEND_ARG_INFO(0, having)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_mvc_model_query_builder_limit, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_mvc_model_query_builder_limit, 0, 0, 0)
 	ZEND_ARG_INFO(0, limit)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
@@ -16086,7 +16090,7 @@ static PHP_METHOD(Phalcon_Tag, tagHtml);
 static PHP_METHOD(Phalcon_Tag, tagHtmlClose);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_tag_getescaper, 0, 0, 1)
-	ZEND_ARG_INFO(0, params)
+	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_phalcon_tag_renderattributes, 0, 0, 2)
