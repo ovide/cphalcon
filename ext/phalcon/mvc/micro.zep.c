@@ -23,23 +23,6 @@
 #include "kernel/concat.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
- */
 /**
  * Phalcon\Mvc\Micro
  *
@@ -479,7 +462,7 @@ PHP_METHOD(Phalcon_Mvc_Micro, options) {
 PHP_METHOD(Phalcon_Mvc_Micro, mount) {
 
 	zend_bool _6, _7;
-	zephir_fcall_cache_entry *_5 = NULL;
+	zephir_fcall_cache_entry *_5 = NULL, *_8 = NULL, *_9 = NULL;
 	HashTable *_3;
 	HashPosition _2;
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
@@ -563,11 +546,11 @@ PHP_METHOD(Phalcon_Mvc_Micro, mount) {
 				_7 = Z_TYPE_P(methods) == IS_ARRAY;
 			}
 			if (_7) {
-				ZEPHIR_CALL_METHOD(NULL, route, "via", NULL, methods);
+				ZEPHIR_CALL_METHOD(NULL, route, "via", &_8, methods);
 				zephir_check_call_status();
 			}
 			if (Z_TYPE_P(name) == IS_STRING) {
-				ZEPHIR_CALL_METHOD(NULL, route, "setname", NULL, name);
+				ZEPHIR_CALL_METHOD(NULL, route, "setname", &_9, name);
 				zephir_check_call_status();
 			}
 		}

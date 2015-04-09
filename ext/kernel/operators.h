@@ -21,6 +21,9 @@
 #ifndef ZEPHIR_KERNEL_OPERATORS_H
 #define ZEPHIR_KERNEL_OPERATORS_H
 
+#include <php.h>
+#include <Zend/zend.h>
+
 /** Strict comparing */
 #define ZEPHIR_IS_LONG(op1, op2)   ((Z_TYPE_P(op1) == IS_LONG && Z_LVAL_P(op1) == op2) || zephir_compare_strict_long(op1, op2 TSRMLS_CC))
 #define ZEPHIR_IS_DOUBLE(op1, op2) ((Z_TYPE_P(op1) == IS_DOUBLE && Z_DVAL_P(op1) == op2) || zephir_compare_strict_double(op1, op2 TSRMLS_CC))
@@ -163,7 +166,7 @@ long zephir_safe_mod_zval_double(zval *op1, double op2 TSRMLS_DC);
 long zephir_safe_mod_long_zval(long op1, zval *op2 TSRMLS_DC);
 long zephir_safe_mod_double_zval(double op1, zval *op2 TSRMLS_DC);
 
-void zephir_floor(zval *return_value, zval *op1 TSRMLS_DC);
+double zephir_floor(zval *op1 TSRMLS_DC);
 void zephir_ceil(zval *return_value, zval *op1 TSRMLS_DC);
 void zephir_round(zval *return_value, zval *op1, zval *op2, zval *op3 TSRMLS_DC);
 void zephir_pow(zval *return_value, zval *op1, zval *op2 TSRMLS_DC);

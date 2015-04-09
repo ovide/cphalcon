@@ -24,24 +24,6 @@
 #include "kernel/string.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- |          Nikolaos Dimopoulos <nikos@phalconphp.com>                    |
- +------------------------------------------------------------------------+
- */
 /**
  * Phalcon\Tag
  *
@@ -150,7 +132,7 @@ PHP_METHOD(Phalcon_Tag, getEscaper) {
  */
 PHP_METHOD(Phalcon_Tag, renderAttributes) {
 
-	zephir_fcall_cache_entry *_15 = NULL;
+	zephir_fcall_cache_entry *_15 = NULL, *_16 = NULL;
 	zend_bool _10, _11;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1, *_4, *_8;
@@ -249,7 +231,7 @@ PHP_METHOD(Phalcon_Tag, renderAttributes) {
 				return;
 			}
 			if (zephir_is_true(escaper)) {
-				ZEPHIR_CALL_METHOD(&escaped, escaper, "escapehtmlattr", NULL, value);
+				ZEPHIR_CALL_METHOD(&escaped, escaper, "escapehtmlattr", &_16, value);
 				zephir_check_call_status();
 			} else {
 				ZEPHIR_CPY_WRT(escaped, value);

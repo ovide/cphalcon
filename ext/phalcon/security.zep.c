@@ -23,23 +23,6 @@
 #include "kernel/concat.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
- */
 /**
  * Phalcon\Security
  *
@@ -554,7 +537,7 @@ PHP_METHOD(Phalcon_Security, computeHmac) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *data, *key, *algo, *raw = NULL, *ops = NULL, *_0, *_1;
+	zval *data, *key, *algo, *raw = NULL, *hmac = NULL, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &data, &key, &algo, &raw);
@@ -564,9 +547,9 @@ PHP_METHOD(Phalcon_Security, computeHmac) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&ops, "hash_hmac", NULL, algo, data, key, raw);
+	ZEPHIR_CALL_FUNCTION(&hmac, "hash_hmac", NULL, algo, data, key, raw);
 	zephir_check_call_status();
-	if (!(zephir_is_true(ops))) {
+	if (!(zephir_is_true(hmac))) {
 		ZEPHIR_INIT_VAR(_0);
 		object_init_ex(_0, phalcon_security_exception_ce);
 		ZEPHIR_INIT_VAR(_1);
@@ -577,7 +560,7 @@ PHP_METHOD(Phalcon_Security, computeHmac) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	RETURN_CCTOR(ops);
+	RETURN_CCTOR(hmac);
 
 }
 

@@ -31,6 +31,8 @@
 #ifndef ZEPHIR_KERNEL_GLOBALS_H
 #define ZEPHIR_KERNEL_GLOBALS_H
 
+#include <php.h>
+
 #define ZEPHIR_MAX_MEMORY_STACK 48
 
 /** Memory frame */
@@ -178,10 +180,10 @@ typedef struct _zephir_function_cache {
 
 
 #define PHP_PHALCON_NAME        "phalcon"
-#define PHP_PHALCON_VERSION     "2.0.0r"
+#define PHP_PHALCON_VERSION     "2.0.0-RC1"
 #define PHP_PHALCON_EXTNAME     "phalcon"
 #define PHP_PHALCON_AUTHOR      "Phalcon Team and Contributors"
-#define PHP_PHALCON_ZEPVERSION  "0.6.1a"
+#define PHP_PHALCON_ZEPVERSION  "0.6.2a"
 #define PHP_PHALCON_DESCRIPTION "Web framework delivered as a C-extension for PHP"
 
 typedef struct _zephir_struct_db { 

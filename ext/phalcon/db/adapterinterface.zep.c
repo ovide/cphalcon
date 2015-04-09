@@ -12,23 +12,6 @@
 #include "kernel/main.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
- */
 /**
  * Phalcon\Db\Adapter\Pdo\Mysql
  *
@@ -44,8 +27,6 @@ ZEPHIR_INIT_CLASS(Phalcon_Db_AdapterInterface) {
 
 /**
  * Constructor for Phalcon\Db\Adapter
- *
- * @param array descriptor
  */
 ZEPHIR_DOC_METHOD(Phalcon_Db_AdapterInterface, __construct);
 
@@ -556,15 +537,11 @@ ZEPHIR_DOC_METHOD(Phalcon_Db_AdapterInterface, setNestedTransactionsWithSavepoin
 
 /**
  * Returns if nested transactions should use savepoints
- *
- * @return boolean
  */
 ZEPHIR_DOC_METHOD(Phalcon_Db_AdapterInterface, isNestedTransactionsWithSavepoints);
 
 /**
  * Returns the savepoint name to use for nested transactions
- *
- * @return string
  */
 ZEPHIR_DOC_METHOD(Phalcon_Db_AdapterInterface, getNestedTransactionSavepointName);
 

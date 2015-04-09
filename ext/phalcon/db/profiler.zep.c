@@ -19,23 +19,6 @@
 #include "kernel/operators.h"
 
 
-/*
- +------------------------------------------------------------------------+
- | Phalcon Framework                                                      |
- +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
- +------------------------------------------------------------------------+
- | This source file is subject to the New BSD License that is bundled     |
- | with this package in the file docs/LICENSE.txt.                        |
- |                                                                        |
- | If you did not receive a copy of the license and are unable to         |
- | obtain it through the world-wide-web, please send an email             |
- | to license@phalconphp.com so we can send you a copy immediately.       |
- +------------------------------------------------------------------------+
- | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
- |          Eduar Carvajal <eduar@phalconphp.com>                         |
- +------------------------------------------------------------------------+
- */
 /**
  * Phalcon\Db\Profiler
  *
@@ -152,8 +135,6 @@ PHP_METHOD(Phalcon_Db_Profiler, startProfile) {
 
 /**
  * Stops the active profile
- *
- * @return Phalcon\Db\Profiler
  */
 PHP_METHOD(Phalcon_Db_Profiler, stopProfile) {
 
@@ -187,8 +168,6 @@ PHP_METHOD(Phalcon_Db_Profiler, stopProfile) {
 
 /**
  * Returns the total number of SQL statements processed
- *
- * @return integer
  */
 PHP_METHOD(Phalcon_Db_Profiler, getNumberTotalStatements) {
 
@@ -202,8 +181,6 @@ PHP_METHOD(Phalcon_Db_Profiler, getNumberTotalStatements) {
 
 /**
  * Returns the total time in seconds spent by the profiles
- *
- * @return double
  */
 PHP_METHOD(Phalcon_Db_Profiler, getTotalElapsedSeconds) {
 
@@ -214,8 +191,6 @@ PHP_METHOD(Phalcon_Db_Profiler, getTotalElapsedSeconds) {
 
 /**
  * Returns all the processed profiles
- *
- * @return Phalcon\Db\Profiler\Item[]
  */
 PHP_METHOD(Phalcon_Db_Profiler, getProfiles) {
 
@@ -226,8 +201,6 @@ PHP_METHOD(Phalcon_Db_Profiler, getProfiles) {
 
 /**
  * Resets the profiler, cleaning up all the profiles
- *
- * @return Phalcon\Db\Profiler
  */
 PHP_METHOD(Phalcon_Db_Profiler, reset) {
 
@@ -244,8 +217,6 @@ PHP_METHOD(Phalcon_Db_Profiler, reset) {
 
 /**
  * Returns the last profile executed in the profiler
- *
- * @return	Phalcon\Db\Profiler\Item
  */
 PHP_METHOD(Phalcon_Db_Profiler, getLastProfile) {
 

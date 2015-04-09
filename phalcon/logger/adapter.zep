@@ -3,7 +3,7 @@
  +------------------------------------------------------------------------+
  | Phalcon Framework                                                      |
  +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
  +------------------------------------------------------------------------+
  | This source file is subject to the New BSD License that is bundled     |
  | with this package in the file docs/LICENSE.txt.                        |
@@ -214,6 +214,10 @@ abstract class Adapter
 
 	/**
 	 * Logs messages to the internal logger. Appends logs to the logger
+	 * @param mixed type
+	 * @param mixed message
+	 * @param mixed context
+	 * @return Phalcon\Logger\AdapterInterface
 	 */
 	inline public function log(var type, var message = null, array! context = null) -> <AdapterInterface>
 	{

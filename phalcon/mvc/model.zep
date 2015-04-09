@@ -3,7 +3,7 @@
  +------------------------------------------------------------------------+
  | Phalcon Framework                                                      |
  +------------------------------------------------------------------------+
- | Copyright (c) 2011-2014 Phalcon Team (http://www.phalconphp.com)       |
+ | Copyright (c) 2011-2015 Phalcon Team (http://www.phalconphp.com)       |
  +------------------------------------------------------------------------+
  | This source file is subject to the New BSD License that is bundled     |
  | with this package in the file docs/LICENSE.txt.                        |
@@ -38,6 +38,7 @@ use Phalcon\Mvc\Model\Exception;
 use Phalcon\Mvc\Model\MetadataInterface;
 use Phalcon\Mvc\Model\MessageInterface;
 use Phalcon\Events\ManagerInterface as EventsManagerInterface;
+use Phalcon\Db\Column;
 
 /**
  * Phalcon\Mvc\Model
@@ -2315,7 +2316,48 @@ abstract class Model implements ModelInterface, ResultInterface, InjectionAwareI
 						if !fetch snapshotValue, snapshot[attributeField] {
 							let changed = true;
 						} else {
-							let changed = value != snapshotValue;
+							/**
+							 * See https://github.com/phalcon/cphalcon/issues/3247
+							 * Take a TEXT column with value '4' and replace it by
+							 * the value '4.0'. For PHP '4' and '4.0' are the same.
+							 * We can't use simple comparison...
+							 *
+							 * We must use the type of snapshotValue.
+							 */
+							if value === null {
+								let changed = snapshotValue !== null;
+							} else {
+								if snapshotValue === null {
+									let changed = true;
+								} else {
+									switch (bindType) {
+										case Column::TYPE_BOOLEAN:
+											let changed = (boolean)snapshotValue !== (boolean)value;
+											break;
+										case Column::TYPE_INTEGER:
+											let changed = (int)snapshotValue !== (int)value;
+											break;
+										case Column::TYPE_DECIMAL:
+										case Column::TYPE_FLOAT:
+											let changed = floatval(snapshotValue) !== floatval(value);
+											break;
+										case Column::TYPE_DATE:
+										case Column::TYPE_VARCHAR:
+										case Column::TYPE_DATETIME:
+										case Column::TYPE_CHAR:
+										case Column::TYPE_TEXT:
+										case Column::TYPE_VARCHAR:
+											let changed = (string)snapshotValue !== (string)value;
+											break;
+
+										/**
+										 * Any other type is not really supported...
+										 */
+										default:
+											let changed = value != snapshotValue;
+									}
+								}
+							}
 						}
 
 						/**
@@ -2459,7 +2501,7 @@ abstract class Model implements ModelInterface, ResultInterface, InjectionAwareI
 							/**
 							 * Set the related model
 							 */
-							if typeof record == "object" {
+							if typeof message == "object" {
 								message->setModel(record);
 							}
 
@@ -2645,7 +2687,7 @@ abstract class Model implements ModelInterface, ResultInterface, InjectionAwareI
 								/**
 								 * Set the related model
 								 */
-								if typeof message != "object" {
+								if typeof message == "object" {
 									message->setModel(record);
 								}
 
